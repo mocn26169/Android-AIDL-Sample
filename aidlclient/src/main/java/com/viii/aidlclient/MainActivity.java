@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private boolean mBound = false;
 
     //包含Book对象的list
-    private List<Message> messageList;
+    private List<Info> mInfoList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,11 +47,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         if (messageCenter == null) return;
 
-        Message message = new Message();
-        message.setContent(content);
+        Info info = new Info();
+        info.setContent(content);
         try {
-            messageCenter.addMessage(message);
-            Log.e(getLocalClassName(), message.toString());
+            messageCenter.addInfo(info);
+            Log.e(getLocalClassName(),"客户端："+ info.toString());
         } catch (RemoteException e) {
             e.printStackTrace();
         }
@@ -62,8 +62,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      */
     private void attemptToBindService() {
         Intent intent = new Intent();
-        intent.setAction("com.lypeer.aidl");
-        intent.setPackage("com.lypeer.ipcserver");
+        intent.setAction("com.vvvv.aidl");
+        intent.setPackage("com.iiiv.aidlserver");
         bindService(intent, mServiceConnection, Context.BIND_AUTO_CREATE);
     }
 
@@ -93,8 +93,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             if (messageCenter != null) {
                 try {
-                    messageList = messageCenter.getMessage();
-                    Log.e(getLocalClassName(), messageList.toString());
+                    mInfoList = messageCenter.getInfo();
+                    Log.e(getLocalClassName(), mInfoList.toString());
                 } catch (RemoteException e) {
                     e.printStackTrace();
                 }
