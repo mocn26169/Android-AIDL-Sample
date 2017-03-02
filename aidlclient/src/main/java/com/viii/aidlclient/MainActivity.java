@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (view.getId()) {
             case R.id.button:
                 String content = editText.getText().toString();
-                Log.i(getLocalClassName(), content);
+//                Log.i(getLocalClassName(), content);
                 addMessage(content);
                 break;
         }

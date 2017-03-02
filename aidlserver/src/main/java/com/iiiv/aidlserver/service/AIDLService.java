@@ -18,8 +18,6 @@ import java.util.List;
 
 /**
  * 服务端的AIDLService.java
- * <p/>
- * Created by lypeer on 2016/7/17.
  */
 public class AIDLService extends Service {
 
@@ -33,7 +31,7 @@ public class AIDLService extends Service {
         @Override
         public List<Info> getInfo() throws RemoteException {
             synchronized (this) {
-                Log.e(TAG, "getBooks invoking getBooks() method , now the list is : " + messages.toString());
+                Log.e(TAG, "getInfo invoking getInfo() method , now the list is : " + messages.toString());
                 if (messages != null) {
                     return messages;
                 }
@@ -49,7 +47,7 @@ public class AIDLService extends Service {
                     messages = new ArrayList<>();
                 }
                 if (message == null) {
-                    Log.e(TAG, "Book is null in In");
+                    Log.e(TAG, "message is null in In");
                     message = new Info();
                 }
                 //尝试修改book的参数，主要是为了观察其到客户端的反馈
