@@ -39,7 +39,7 @@ public class LocalAIDLService extends Service {
 
 
         @Override
-        public void addInfo(Info message) throws RemoteException {
+        public Info addInfo(Info message) throws RemoteException {
             synchronized (this) {
                 if (messages == null) {
                     messages = new ArrayList<>();
@@ -48,15 +48,28 @@ public class LocalAIDLService extends Service {
                     Log.e(TAG, "message is null in In");
                     message = new Info();
                 }
-                //尝试修改book的参数，主要是为了观察其到客户端的反馈
-//                message.setContent("dididi");
+
                 if (!messages.contains(message)) {
                     messages.add(message);
                 }
-                //打印mBooks列表，观察客户端传过来的值
+
                 Log.e(TAG, "客户传来了数据" + messages.toString());
+                Info mInfo = new Info();
+                mInfo.setContent("服务端做了修改:" + message.getContent() +"     time:" + + (System.currentTimeMillis()));
+                return mInfo;
+//                //打开一个程序的后台服务！
+//                Intent serviceIntent = new Intent();
+//                //设置一个组件名称  同组件名来启动所需要启动Service
+//                serviceIntent.setComponent(new ComponentName("com.yoursender.driversingle", "com.yoursender.driversingle.service.LocationService"));
+//                startService(serviceIntent);
+
+                //打开一个程序!
+//                Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.tencent.mobileqq");
+//                startActivity(launchIntent);
             }
         }
+
+
     };
 
     @Override

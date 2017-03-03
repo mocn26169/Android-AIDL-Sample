@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
@@ -18,6 +19,8 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText editText;
+    private TextView tv_modify;
+    private TextView tv_realtime;
 
     //由AIDL文件生成的Java类
     private MessageCenter messageCenter = null;
@@ -33,11 +36,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         editText = (EditText) findViewById(R.id.editText);
+        tv_realtime = (TextView) findViewById(R.id.tv_realtime);
+        tv_modify = (TextView) findViewById(R.id.tv_modify);
         findViewById(R.id.button).setOnClickListener(this);
+
     }
 
     /**
-     * 按钮的点击事件，点击之后调用服务端的addBookIn方法
+     * 调用服务端的addInfo方法
      */
     public void addMessage(String content) {
         //如果与服务端的连接处于未连接状态，则尝试连接
@@ -51,7 +57,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Info info = new Info();
         info.setContent(content);
         try {
-            messageCenter.addInfo(info);
+            info =messageCenter.addInfo(info);
+            tv_modify.setText(info.getContent());
             Log.e(getLocalClassName(), "客户端发送：" + info.toString());
         } catch (RemoteException e) {
             e.printStackTrace();
@@ -111,12 +118,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
+        String content;
         switch (view.getId()) {
             case R.id.button:
-                String content = editText.getText().toString();
+                content = editText.getText().toString();
 //                Log.i(getLocalClassName(), content);
                 addMessage(content);
                 break;
-        }
-    }
+
+    }}
 }

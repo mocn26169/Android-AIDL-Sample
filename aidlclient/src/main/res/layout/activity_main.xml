@@ -15,5 +15,23 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="200dp"
-        android:text="Send"/>
+        android:text="发送"/>
+
+    <TextView
+        android:id="@+id/tv_modify"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="150dp"
+        android:text="服务端发来的内容:"/>
+
+    <TextView
+        android:id="@+id/tv_realtime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="100dp"
+        android:text="服务端发来的实时内容:"/>
 </RelativeLayout>
