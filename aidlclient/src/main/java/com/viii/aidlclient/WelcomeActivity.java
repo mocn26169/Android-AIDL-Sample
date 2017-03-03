@@ -28,6 +28,11 @@ public class WelcomeActivity extends AppCompatActivity {
         toActivity(this, LocalAIDLActivity.class);
     }
 
+    public void toCallbackService(View view) {
+        Log.i(getClass().getSimpleName(), "toCallbackService");
+        toActivity(this, CallBackActivity.class);
+    }
+
     private void toActivity(Context _context, Class<? extends Activity> _class) {
         Intent intent = new Intent(_context, _class);
         startActivity(intent);

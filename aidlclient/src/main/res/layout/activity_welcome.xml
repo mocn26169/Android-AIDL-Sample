@@ -20,5 +20,10 @@
         android:onClick="toLocalService"
         android:layout_height="wrap_content"
         android:text="与本地项目的Service通信"/>
-
+    <Button
+        android:layout_marginTop="30dp"
+        android:layout_width="wrap_content"
+        android:onClick="toCallbackService"
+        android:layout_height="wrap_content"
+        android:text="回调通信"/>
 </LinearLayout>

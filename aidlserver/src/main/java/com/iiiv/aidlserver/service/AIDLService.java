@@ -1,15 +1,14 @@
 package com.iiiv.aidlserver.service;
 
+
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.support.annotation.Nullable;
 import android.util.Log;
-
 import com.viii.aidlclient.Info;
 import com.viii.aidlclient.MessageCenter;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,7 +54,7 @@ public class AIDLService extends Service {
 
                 Log.e(TAG, "客户传来了数据" + messages.toString());
                 Info mInfo = new Info();
-                mInfo.setContent("服务端做了修改:" + message.getContent()+"     time:" + (System.currentTimeMillis()));
+                mInfo.setContent("服务端做了修改:" + message.getContent() + "     time:" + (System.currentTimeMillis()));
                 return mInfo;
 //                //打开一个程序的后台服务！
 //                Intent serviceIntent = new Intent();
@@ -71,18 +70,26 @@ public class AIDLService extends Service {
 
     };
 
+
     @Override
     public void onCreate() {
-//        Info message = new Info();
-//        message.setContent("消息");
-//        messages.add(message);
         super.onCreate();
+
     }
 
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
         Log.e(getClass().getSimpleName(), String.format("on bind,intent = %s", intent.toString()));
+
         return messageCenter;
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+    }
+
+
 }

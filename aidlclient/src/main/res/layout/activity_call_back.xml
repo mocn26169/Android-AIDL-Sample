@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:text="服务端发来的内容:"
         android:layout_below="@+id/editText"
-     />
+        />
 
 
 </RelativeLayout>

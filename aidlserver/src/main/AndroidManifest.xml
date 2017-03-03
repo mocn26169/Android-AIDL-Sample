@@ -25,6 +25,15 @@
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </service>
+
+        <service
+            android:name=".service.CallbackAIDLService"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.vvvv.callbackaidl"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

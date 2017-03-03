@@ -23,7 +23,10 @@
 
         <service
             android:name=".service.LocalAIDLService"
-            android:process=":remote"></service>
+            android:process=":remote"/>
+
+        <activity android:name=".CallBackActivity">
+        </activity>
     </application>
 
 </manifest>
