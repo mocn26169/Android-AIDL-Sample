@@ -13,9 +13,11 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.viii.aidlclient.service.LocalAIDLService;
+
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class LocalAIDLActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText editText;
 
@@ -31,7 +33,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_local_aidl);
         editText = (EditText) findViewById(R.id.editText);
         findViewById(R.id.button).setOnClickListener(this);
     }
@@ -62,9 +64,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      * 跨进程绑定服务
      */
     private void attemptToBindService() {
-        Intent intent = new Intent();
-        intent.setAction("com.vvvv.aidl");
-        intent.setPackage("com.iiiv.aidlserver");
+        Intent intent = new Intent(this,LocalAIDLService.class);
         bindService(intent, mServiceConnection, Context.BIND_AUTO_CREATE);
     }
 
