@@ -1,4 +1,3 @@
-
 package com.viii.aidlclient;
 
 import com.viii.aidlclient.MessageCenter;
