@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.viii.aidlclient.service.LocalAIDLService;
@@ -20,7 +21,7 @@ import java.util.List;
 public class LocalAIDLActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText editText;
-
+    private TextView tv_modify;
     //由AIDL文件生成的Java类
     private MessageCenter messageCenter = null;
 
@@ -35,6 +36,7 @@ public class LocalAIDLActivity extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_local_aidl);
         editText = (EditText) findViewById(R.id.editText);
+        tv_modify = (TextView) findViewById(R.id.tv_modify);
         findViewById(R.id.button).setOnClickListener(this);
     }
 
@@ -53,7 +55,8 @@ public class LocalAIDLActivity extends AppCompatActivity implements View.OnClick
         Info info = new Info();
         info.setContent(content);
         try {
-            messageCenter.addInfo(info);
+            info = messageCenter.addInfo(info);
+            tv_modify.setText(info.getContent());
             Log.e(getLocalClassName(), "客户端发送：" + info.toString());
         } catch (RemoteException e) {
             e.printStackTrace();
@@ -64,7 +67,7 @@ public class LocalAIDLActivity extends AppCompatActivity implements View.OnClick
      * 跨进程绑定服务
      */
     private void attemptToBindService() {
-        Intent intent = new Intent(this,LocalAIDLService.class);
+        Intent intent = new Intent(this, LocalAIDLService.class);
         bindService(intent, mServiceConnection, Context.BIND_AUTO_CREATE);
     }
 

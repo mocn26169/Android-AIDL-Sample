@@ -14,9 +14,6 @@ import com.viii.aidlclient.IService;
 import com.viii.aidlclient.Info;
 import com.viii.aidlclient.MessageCenter;
 
-import java.util.ArrayList;
-import java.util.List;
-
 
 /**
  * 服务端的AIDLService.java
@@ -24,18 +21,16 @@ import java.util.List;
 public class CallbackAIDLService extends Service {
 
     public final String TAG = this.getClass().getSimpleName();
-
-
-
     private boolean quit = false;
     private int count;
+    private Thread thread;
 
     private Handler timeHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             Log.i(getClass().getSimpleName(), "发送消息：" + msg.what);
             Info info = new Info();
-            info.setContent("来自服务器的消息:"+msg.what);
+            info.setContent("来自服务器的消息:" + msg.what);
             callBack(info);
             super.handleMessage(msg);
         }
@@ -46,15 +41,15 @@ public class CallbackAIDLService extends Service {
     private IService.Stub mBinder = new IService.Stub() {
 
         @Override
-        public void unregisterCallback(MessageCenter cb){
-            if(cb != null) {
+        public void unregisterCallback(MessageCenter cb) {
+            if (cb != null) {
                 mCallbacks.unregister(cb);
             }
         }
 
         @Override
-        public void registerCallback(MessageCenter cb){
-            if(cb != null) {
+        public void registerCallback(MessageCenter cb) {
+            if (cb != null) {
                 mCallbacks.register(cb);
             }
         }
@@ -76,7 +71,7 @@ public class CallbackAIDLService extends Service {
      * 初始化一个定时器
      */
     private void initTimer() {
-        new Thread() {
+        thread=  new Thread() {
             @Override
             public void run() {
                 while (!quit) {
@@ -90,7 +85,8 @@ public class CallbackAIDLService extends Service {
                     timeHandler.sendMessage(message);
                 }
             }
-        }.start();
+        };
+        thread.start();
     }
 
     @Override
@@ -110,6 +106,7 @@ public class CallbackAIDLService extends Service {
     public void onDestroy() {
         quit = true;
         mCallbacks.kill();
+        thread.interrupt();
         super.onDestroy();
 
     }
