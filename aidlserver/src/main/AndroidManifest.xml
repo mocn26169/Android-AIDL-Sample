@@ -34,6 +34,17 @@
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </service>
+        <service
+            android:name=".service.MessengerService"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action
+                    android:name="com.vvvv.message">
+                </action>
+                <category android:name="android.intent.category.DEFAULT"></category>
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

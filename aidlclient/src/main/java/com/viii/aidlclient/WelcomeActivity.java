@@ -32,6 +32,10 @@ public class WelcomeActivity extends AppCompatActivity {
         Log.i(getClass().getSimpleName(), "toCallbackService");
         toActivity(this, CallBackActivity.class);
     }
+    public void toMessengerService(View view) {
+        Log.i(getClass().getSimpleName(), "toCallbackService");
+        toActivity(this, MessengerActivity.class);
+    }
 
     private void toActivity(Context _context, Class<? extends Activity> _class) {
         Intent intent = new Intent(_context, _class);

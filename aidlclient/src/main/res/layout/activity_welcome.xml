@@ -26,4 +26,11 @@
         android:onClick="toCallbackService"
         android:layout_height="wrap_content"
         android:text="回调通信"/>
+    <Button
+        android:layout_marginTop="30dp"
+        android:layout_width="wrap_content"
+        android:onClick="toMessengerService"
+        android:textAllCaps="false"
+        android:layout_height="wrap_content"
+        android:text="使用Messenger通信"/>
 </LinearLayout>

@@ -27,6 +27,8 @@
 
         <activity android:name=".CallBackActivity">
         </activity>
+        <activity android:name=".MessengerActivity">
+        </activity>
     </application>
 
 </manifest>
