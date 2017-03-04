@@ -16,4 +16,12 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="200dp"
         android:text="Send"/>
+    <TextView
+        android:id="@+id/tv_modify"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="服务端发来的内容:"
+        android:layout_below="@+id/editText"
+    />
+
 </RelativeLayout>
